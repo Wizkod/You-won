@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations! You Won $20,000</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+        .container {
+            margin-top: 50px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+            display: inline-block;
+        }
+        h1 {
+            color: green;
+        }
+        #countdown {
+            font-size: 24px;
+            font-weight: bold;
+            color: red;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: darkgreen;
+        }
+        #message {
+            font-size: 18px;
+            font-weight: bold;
+            color: blue;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🎉 Congratulations! You Won $20,000 🎉</h1>
+        <p>Complete the verification below before the timer runs out!</p>
+        <p>Time Left: <span id="countdown">30</span> seconds</p>
+        
+        <input type="text" id="name" placeholder="Enter Your Name">
+        <input type="text" id="code" placeholder="Enter Your Code">
+        <button onclick="checkCode()">Submit</button>
+        
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Countdown Timer
+        let timeLeft = 30;
+        let timer = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById("countdown").textContent = timeLeft;
+            } else {
+                clearInterval(timer);
+                document.getElementById("message").innerHTML = "Time expired! Try again later.";
+            }
+        }, 1000);
+
+        // Check the Code
+        function checkCode() {
+            let name = document.getElementById("name").value;
+            let code = document.getElementById("code").value;
+            
+            if (name === "" || code === "") {
+                document.getElementById("message").innerHTML = "Please enter your name and code!";
+                return;
+            }
+            
+            if (code === "0813") {
+                document.getElementById("message").innerHTML = 
+                    `✅ Process Completed! <br> Text the agent now to claim your $20,000.`;
+            } else {
+                document.getElementById("message").innerHTML = "❌ Invalid Code! Try again.";
+            }
+        }
+    </script>
+
+</body>
+</html>
